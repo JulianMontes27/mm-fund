@@ -1,11 +1,10 @@
-import { auth, signIn } from "@/auth";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import UserButton from "./UserButton";
+import { auth } from "@/auth";
+import UserButton from "@/components/auth/user-button";
+import SignInBtn from "./auth/sign-in-btn";
 
-//since it is a server component, we can make it async and fetch data
-export default async function NavBar() {
-  // TODO: Show the currently logged-in user
+import Link from "next/link";
+
+export default async function Navbar() {
   const session = await auth();
   const user = session?.user;
 
@@ -18,18 +17,5 @@ export default async function NavBar() {
         {user ? <UserButton user={user} /> : <SignInBtn />}
       </nav>
     </header>
-  );
-}
-
-function SignInBtn() {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn();
-      }}
-    >
-      <Button type="submit">Signin with Google</Button>
-    </form>
   );
 }
