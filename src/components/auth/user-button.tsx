@@ -1,6 +1,6 @@
 import avatarPlaceholder from "@/assets/images/avatar_placeholder.png";
 
-import { LogOut, Settings } from "lucide-react";
+import { LayoutDashboard, LogOut, Settings } from "lucide-react";
 import { Lock } from "lucide-react";
 
 import { User } from "next-auth";
@@ -44,9 +44,9 @@ export default function UserButton({ user }: UserButtonProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/settings">
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
+            <Link href={`/dashboard/${user.id}`}>
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
             </Link>
           </DropdownMenuItem>
           {user?.role === "admin" && (
@@ -57,6 +57,12 @@ export default function UserButton({ user }: UserButtonProps) {
               </Link>
             </DropdownMenuItem>
           )}
+          <DropdownMenuItem asChild>
+            <Link href="/settings">
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Settings</span>
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
