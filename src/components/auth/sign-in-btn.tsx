@@ -1,16 +1,20 @@
-import { signIn } from "@/auth";
+import { signInAction } from "@/actions/auth-actions";
 
 import { Button } from "../ui/button";
+import React from "react";
 
-export default function SignInBtn() {
+import { cn } from "@/lib/utils";
+
+interface SignInBtnProps {
+  className: string;
+}
+
+export const SignInBtn: React.FC<SignInBtnProps> = ({ className }) => {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn();
-      }}
-    >
-      <Button type="submit">Iniciar sesión</Button>
+    <form action={signInAction}>
+      <Button type="submit" className={cn("", className)}>
+        Iniciar sesión
+      </Button>
     </form>
   );
-}
+};
