@@ -5,9 +5,8 @@ import Resend from "next-auth/providers/resend";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Google,
-    Resend({
-      from: "no-reply@julianmontesps4@gmail.com",
-      
-    }),
+    // Resend({
+    //   from: "no-reply@julianmontesps4@gmail.com",
+    // }),
   ],
 });
